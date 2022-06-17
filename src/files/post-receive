@@ -1,0 +1,13 @@
+#!/bin/sh
+git --work-tree=/var/www/%NAME% --git-dir=/var/www/%NAME%.git checkout -f
+
+# optionally, restore submodules
+cd /var/www/FOO
+git --git-dir=/var/www/%NAME%.git --work-tree=. submodule init
+git --git-dir=/var/www/%NAME%.git --work-tree=. submodule update
+
+# optionally, install deps and rebuild the project
+# npm i
+# npm run build
+
+pm2 restart %NAME%

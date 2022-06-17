@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": [
+        "src/*"
+      ]
+    },
+    "module": "AMD",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "target": "es2020",
+    "lib": [ "es2020" ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

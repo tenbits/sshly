@@ -1,0 +1,106 @@
+{
+  "name": "sshly",
+  "description": "Wrapper over ssh2 module to simplify the API",
+  "version": "0.0.1",
+  "main": "./lib/sshly.js",
+  "types": "./lib/sshly.d.ts",
+  "author": {
+    "name": "Alex Kit",
+    "email": "alex.kit@atmajs.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tenbits/sshly"
+  },
+  "keywords": [
+    "ssh",
+    "sftp"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "app-bundler"
+  },
+  "dependencies": {
+    "atma-io": "^1.2.51",
+    "atma-utils": "^0.2.60",
+    "memd": "^0.3.10",
+    "ssh2": "^1.11.0"
+  },
+  "devDependencies": {
+    "a-di": "^1.0.25",
+    "alot": "^0.2.96",
+    "app-bundler": "^0.1.7",
+    "atma": "^0.15.17",
+    "atma-class": "^1.1.84",
+    "atma-io-middleware-yml": "^1.1.25",
+    "atma-loader-ts": "^1.1.18",
+    "includejs": "^0.15.52"
+  },
+  "app-bundler": {
+    "apps": {
+      "sshly": {
+        "file": "src/exports.ts",
+        "outputMain": "lib/sshly.js"
+      }
+    },
+    "common": {
+      "package": {
+        "module": "commonjs",
+        "commonjs": {
+          "output": "simplified"
+        }
+      },
+      "extensions": {
+        "io": {
+          "type": "js"
+        }
+      },
+      "defaultExtensions": {
+        "js": "ts"
+      },
+      "dynamicDependencies": [
+        "atma-io",
+        "atma-utils",
+        "memd",
+        "ssh2"
+      ],
+      "middlewares": {
+        "ts": [
+          "atma-loader-ts:read"
+        ]
+      },
+      "settings": {
+        "atma-loader-ts": {
+          "typescript": {
+            "compilerOptions": {
+              "module": "CommonJS",
+              "target": "ES2020"
+            }
+          }
+        }
+      }
+    }
+  },
+  "atma": {
+    "plugins": [
+      "atma-loader-ts",
+      "atma-io-middleware-yml"
+    ],
+    "settings": {
+      "include": {
+        "amd": true,
+        "extentionDefault": {
+          "js": "ts"
+        },
+        "routes": "#import ./tsconfig.json compilerOptions.paths",
+        "map": {
+          "node:events": "events"
+        }
+      },
+      "atma-loader-ts": {
+        "sourceMap": true,
+        "typescript": "#import ./tsconfig.json"
+      }
+    }
+  }
+}
